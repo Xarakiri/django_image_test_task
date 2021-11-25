@@ -2,7 +2,7 @@ from django.urls import path
 from drf_yasg import openapi
 from drf_yasg.views import get_schema_view
 from rest_framework import permissions
-from .views import RegistrationAPIView, LoginAPIView, UserView
+from .views import RegistrationAPIView, LoginAPIView, UserView, ImageView
 
 
 schema_view = get_schema_view(
@@ -22,4 +22,5 @@ urlpatterns = [
     path('users/', RegistrationAPIView.as_view()),
     path('users/login/', LoginAPIView.as_view()),
     path('me/', UserView.as_view({'get': 'retrieve', 'put': 'update'})),
+    path('image/', ImageView.as_view()),
 ]
