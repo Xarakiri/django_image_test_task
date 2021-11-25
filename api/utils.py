@@ -4,7 +4,6 @@ from django.core.exceptions import ValidationError
 
 
 def image_validator(image):
-    breakpoint()
     file_size = image.size
     limit_kb = 200
     if file_size > limit_kb * 1024:
