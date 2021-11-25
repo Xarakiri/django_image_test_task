@@ -1,7 +1,9 @@
 from django.db import models
 from rest_framework import serializers
 from django.contrib.auth import authenticate
-from .models import User
+from rest_framework.fields import ImageField
+from .models import User, Image
+from .utils import image_validator
 
 
 class RegistrationSerializer(serializers.ModelSerializer):
@@ -60,3 +62,11 @@ class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = ('email', 'username',)
+
+
+class ImageSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Image
+        fields = ('__all__')
+    
+    image = ImageField(validators=[image_validator])
