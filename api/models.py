@@ -5,6 +5,7 @@ from django.conf import settings
 from django.contrib.auth.models import (AbstractBaseUser, BaseUserManager,
                                         PermissionsMixin)
 from django.db import models
+from .utils import get_file_path
 
 
 class UserManager(BaseUserManager):
@@ -70,3 +71,10 @@ class User(AbstractBaseUser, PermissionsMixin):
         }, settings.SECRET_KEY, algorithm=settings.ALGORITHM)
 
         return token.decode('utf-8')
+
+
+class Image(models.Model):
+    image = models.ImageField(upload_to=get_file_path)
+
+    def __str__(self) -> str:
+        return self.title
